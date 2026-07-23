@@ -370,7 +370,7 @@ Working with $\rho(\omega,p)/\omega$ keeps both the unknown and the kernel finit
 </div>
 
 
-## The HLT method
+## The Hansen-Lupo-Tantalo (HLT) method
 
 <div style="margin-bottom: 6px; font-size: 0.95em; margin-top:-1em;">
   No pointwise reconstruction → target a <span style="color: #EB811B; font-weight:bold;">smeared spectral density</span> built as a linear combination of the data [[5]]{color=gray}:
