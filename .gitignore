@@ -1,0 +1,39 @@
+# ---- OS / editor junk -------------------------------------------------------
+.DS_Store
+**/.DS_Store
+*.swp
+*~
+
+# ---- local tooling ----------------------------------------------------------
+.claude/
+/.quarto/
+**/*.quarto_ipynb
+
+# ---- python plotting scripts (not part of the deck) -------------------------
+*.py
+*.py[cod]
+__pycache__/
+
+# ---- leftover deck from the previous (ECT) talk -----------------------------
+#      _quarto.yml only renders topological_rate_finite_p.qmd
+/quarto_PhD_seminar.qmd
+/quarto_PhD_seminar.html
+/quarto_PhD_seminar_files/
+/style.scss
+/slides.pdf
+
+# ---- unused template / example assets ---------------------------------------
+/images/
+/my-iframe/
+
+# ---- loose top-level SVGs from the old deck (keep only the one still used) ---
+/*.svg
+!/lattice3d.svg
+
+# ---- mock-test folders: keep only the single figure the new talk uses --------
+/mock1/
+/mock3/
+/mock4/
+/mock5/
+/mock2/*
+!/mock2/catastrophe_inverse.svg

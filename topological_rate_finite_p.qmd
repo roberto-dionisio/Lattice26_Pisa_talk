@@ -1,0 +1,1200 @@
+---
+title: "Lattice determination of the topological rate at finite momentum in SU(3) Yang–Mills"
+subtitle: |
+  Real-time topological transitions from Euclidean correlators via HLT inversion <br>
+  <span class="workshop" style="display:block;text-align:left">The 43rd International Symposium on Lattice Field Theory</span>
+format:
+  metropolis-beamer-revealjs:
+    theme: theme.scss
+    slide-number: "c/t"
+    footer: "Topological rate at finite momentum in SU(3) Yang–Mills"
+    center-title-slide: true
+    pdf-separate-fragments: false
+header-logo: cherubino_white.png
+author:
+  - name: Roberto Dionisio
+    email: roberto.dionisio@phd.unipi.it
+    affiliations: Università di Pisa & INFN, Sezione di Pisa
+date: last-modified
+embed-resources: false
+header-includes:
+  - |
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          packages: {'[+]': ['ams', 'color']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          displayMath: [['$$', '$$'], ['\\[', '\\]']],
+          processEscapes: true
+        },
+        loader: {
+          load: ['[tex]/color']
+        },
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js"></script>
+  - |
+    <script>
+      // Title slide: drop the Unipi wordmark into the lower-right corner.
+      // Injected as a real <img> (src resolves relative to the page) rather than
+      // a reveal background, which would tint the title text.
+      window.addEventListener('load', function () {
+        var ts = document.getElementById('title-slide');
+        if (ts && !ts.querySelector('.title-logos')) {
+          var img = document.createElement('img');
+          img.className = 'title-logos';
+          img.src = 'marchio_unipi_orizz_pant541.png';
+          img.alt = 'University of Pisa';
+          ts.appendChild(img);
+        }
+      });
+    </script>
+---
+
+## Outline
+
+<div style="position: relative; top: 4%; left: 0%">
+  <ol>
+    <li class="fragment" data-fragment-index="1" style="font-weight: 400">
+      Physics motivation
+      <ul>
+        <li class="fragment" data-fragment-index="1" style="font-weight: 300">Real-time topological transitions: CME &amp; axion cosmology</li>
+        <li class="fragment" data-fragment-index="1" style="font-weight: 300">Why <em>finite momentum</em>?</li>
+      </ul>
+    </li>
+    <li class="fragment" data-fragment-index="2" style="font-weight: 400">
+      From Euclidean correlators to the rate
+      <ul>
+        <li class="fragment" data-fragment-index="2" style="font-weight: 300">An ill-posed inverse problem &amp; the HLT method</li>
+      </ul>
+    </li>
+    <li class="fragment" data-fragment-index="3" style="font-weight: 400">
+      Lattice calculation
+      <ul>
+        <li class="fragment" data-fragment-index="3" style="font-weight: 300">Quenched QCD at $T \simeq 1.24\,T_c$, momenta up to $p/T \sim 10$</li>
+        <li class="fragment" data-fragment-index="3" style="font-weight: 300">Three limits, two independent strategies</li>
+      </ul>
+    </li>
+    <li class="fragment" data-fragment-index="4" style="font-weight: 400">
+      Results: the on-shell rate $\Gamma_{\mathrm{top}}(p)$
+    </li>
+    <li class="fragment" data-fragment-index="5" style="font-weight: 400">
+      Conclusions &amp; outlook
+    </li>
+  </ol>
+</div>
+
+<div style="text-align:center; position:relative; bottom:-10%; right:-15%;transform-origin: top left; transform: scale(1.0) translate(10%, -50%) ; margin: auto;">
+<img src="lattice3d.svg" style="width:100%; height:auto; max-width:none; ">
+</div>
+
+
+## QCD Topology {auto-animate=true auto-animate-easing="ease-in-ease-out"}
+Full QCD Euclidean action:
+
+::: {class="fragment"}
+$$S_{\text{QCD}} =
+\int d^4x~ 
+\frac{1}{2g^2} \mathrm{Tr} \left[G_{\mu\nu}(x) G_{\mu\nu}(x)\right]
++ \int d^4x~\sum_f \bar{\psi}_f(x) (\gamma_\mu D_\mu + m_f)\psi_f(x)
+\;+\;
+ \theta Q $$
+:::
+
+## QCD Topology {auto-animate=true auto-animate-easing="ease-in-ease-out"}
+Full QCD Euclidean action:
+
+::: {.class}
+$$S_{\text{QCD}} =
+\int d^4x~ 
+\frac{1}{2g^2} \mathrm{Tr} \left[G_{\mu\nu}(x) G_{\mu\nu}(x)\right]
++ \int d^4x~\sum_f \bar{\psi}_f(x) (\gamma_\mu D_\mu + m_f)\psi_f(x)
+\;+\;
+ \textcolor{#EB811B}{\theta Q} $$
+:::
+
+::: {class="fragment"}
+The θ-term couples to the **topological charge**:
+
+::: {.class style="text-align:center;"}
+$$
+Q = \frac{1}{32\pi^2} \int d^4x~ 
+\varepsilon_{\mu\nu\rho\sigma} \,
+\text{Tr}[G_{\mu\nu} G_{\rho\sigma}]
+$$
+:::
+:::
+
+::: {class="fragment"}
+- In the continuum: $ Q $ in $\mathbb{Z}$  
+- Each integer labels a distinct **topological sector**
+:::
+
+
+<!--
+::: {class="fragment" style="margin-top:-0px;"}
+- No trivial Topology → **Rich** Phenomenology:
+  - Witten Veneziano mechanism and $\eta^\prime$ mass
+  - Strong-CP problem
+  - Topology at large $N$
+
+  ::: {class="fragment" style="margin-top:-0px;"}
+  -  Topological Transitions → [**Sphalerons**]{style="color: #EB811B;"}
+  ::: 
+
+:::
+-->
+
+::: {class="fragment" style="font-size:1.0em; font-style:italic; color:gray; margin-top:30px; margin-left:38%; text-align:left;"}
+  Topological sectors are separated by **energy barriers** <br>
+  *transitions between vacua are rare but physically important*
+:::
+## Why QCD topology matters {auto-animate=true }
+
+::: {class="fragment"}
+- Different $Q$-sectors correspond to **distinct vacua** with non-trivial topological structure
+:::
+
+::: {class="fragment" style="text-align:center; margin-top:-90px;"}
+
+<img src="potential_plot.png"  data-id="pot" style="width:100%; margin-top:20px;"/>
+
+:::
+
+
+
+## Why QCD topology matters {auto-animate=true auto-animate-duration=0.5}
+
+
+- Different $Q$-sectors correspond to **distinct vacua** with non-trivial topological structure
+
+::: {class="fragment" style="margin-top:-10px"}
+- Topology underlies key QCD phenomena:
+  - Witten–Veneziano mechanism → $m_{\eta'~}$
+  - Strong-CP problem ($\theta$-term)
+  - Topological susceptibility in QCD thermodynamics
+:::
+
+::: {.fragment style="margin-top:-10px; font-size=0em;"}
+<div style="font-size:0.1em"> .
+</div>
+:::
+::: { style="text-align:center;  margin-top:-70px;"}
+<img src="potential_plot.png" data-id="pot" style="width:100%;"/>
+:::
+
+::: {class="fragment" style="font-size:1.0em; font-style:italic; color:gray; margin-top:-10px; margin-left:48%; text-align:left;"}
+Understanding QCD topology is essential<br> for [**hadron physics**]{style="color: #EB811B;"} and [**finite-temperature QCD**]{style="color: #EB811B;"}.
+:::
+
+## Real-time transitions: the Sphaleron Rate {auto-animate=true}
+
+::: columns
+::: column 
+:::{class="fragment"}
+<div style="text-align:center;">
+[σφαλερός]{style="font-weight:450;"} *(sphalerós)*
+</div>
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+  <ol>
+    <li class=""> **slippery**, likely to make one stumble</li>
+    <li class="">ready to fall</li>
+  </ol>
+</div>
+
+:::
+
+:::
+
+::: column 
+::: {class="fragment"}
+<div style="text-align:center; ">
+[Sphaleron Rate:]{style="font-weight:450;"}
+</div>
+
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+Rate of [real time]{style="font-weight:450;"} thermal transitions above sphaleron barriers separating topologically-inequivalent QCD vacua
+</div>
+
+:::
+
+:::
+
+:::
+
+<img src="potential_plot.png"  data-fragment-index="1" style="width:100%; margin-top:10px; display:block;"/>
+
+
+## Real-time transitions: the Sphaleron Rate
+
+::: columns
+::: column 
+:::{class=""}
+<div style="text-align:center;">
+[σφαλερός]{style="font-weight:450;"} *(sphalerós)*
+</div>
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+  <ol>
+    <li class=""> **slippery**, likely to make one stumble</li>
+    <li class="">ready to fall</li>
+  </ol>
+</div>
+
+:::
+
+:::
+
+::: column 
+::: {class=""}
+<div style="text-align:center; ">
+[Sphaleron Rate:]{style="font-weight:450;"}
+</div>
+
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+Rate of [real time]{style="font-weight:450;"} thermal transitions above sphaleron barriers separating topologically-inequivalent QCD vacua
+</div>
+
+:::
+
+:::
+
+:::
+
+<img src="potential_plotsph.png"  data-fragment-index="1" style="width:100%; margin-top:10px; display:block;"/>
+
+
+## Real-time transitions: the Sphaleron Rate {auto-animate=true}
+
+::: columns
+::: column 
+:::{class=""}
+<div style="text-align:center;">
+[σφαλερός]{style="font-weight:450;"} *(sphalerós)*
+</div>
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+  <ol>
+    <li class=""> **slippery**, likely to make one stumble</li>
+    <li class="">ready to fall</li>
+  </ol>
+</div>
+
+:::
+
+:::
+
+::: column 
+::: {data-id="def"}
+<div style="text-align:center; ">
+[Sphaleron Rate:]{style="font-weight:450;"}
+</div>
+
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+Rate of [real time]{style="font-weight:450;"} thermal transitions above sphaleron barriers separating topologically-inequivalent QCD vacua
+</div>
+
+:::
+
+:::
+
+:::
+
+<img src="potential_plotsph_1.png"  data-fragment-index="1" style="width:100%; margin-top:10px; display:block;"/>
+
+## Real-time transitions: the Sphaleron Rate {auto-animate=true}
+::: columns
+::: column 
+::: {data-id="def"}
+<div style="text-align:center; ">
+[Sphaleron Rate:]{style="font-weight:450;"}
+</div>
+
+
+<div style="text-align:center; font-size: 22px; font-style: italic">
+Rate of [real time]{style="font-weight:450;"} thermal transitions above sphaleron barriers separating topologically-inequivalent QCD vacua
+</div>
+
+:::
+
+:::
+
+::: column 
+
+:::{class="fragment"}
+$$
+\Gamma_{\mathrm{sphal}} \equiv \int dt d^3x ~\langle q(\vec{x},t) q(\vec{0},0)\rangle _T
+$$
+:::
+
+:::{class="fragment"}
+$$
+\langle \mathcal{O} \rangle _T = \frac{1}{\mathrm{Tr}\{ e^{-\mathcal{H}/T} \}} \mathrm{Tr}\{e^{- \mathcal{H}/T} \mathcal{O}\}
+$$
+:::
+
+:::
+
+:::
+
+<img src="potential_plotsph_1.png"  data-fragment-index="1" style="width:100%; margin-top:-50px; display:block;"/>
+
+::: {class="fragment fade-up" style="font-size:1.0em; font-style:italic; color:gray; margin-top:-10px; margin-left:68%; text-align:left; font-size: 1.7rem"  }
+[**Why do we care?**]{style="color: #EB811B; font-size:1.9rem"}
+:::
+
+## 1) Chiral Magnetic Effect {auto-animate=true}
+Early stage of the Universe ($\small 10^{-6}\mathrm{s}$) → Quark-Gluon plasma 
+
+::: {.r-hstack style="transform: translateX(-200px) translateY(100px)"}
+::: {data-id="left" class="fragment zoom-in" data-fragment-index="2" style="background: #0d3d96ff; width:200px; height:200px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350;text-align:center; flex-direction: column; margin-right:60px;"}
+<div>
+  <span style="position:relative; left:-40px; font-size:1rem;">Spin</span>
+  <span style="position:relative; left:-50px; font-size:2rem;">↑</span>
+</div>
+<div>
+  <span style="position:relative; left:38px; top:-50px; font-size:2rem;">↓</span>
+  <span style="position:relative; left:34px; top:-50px; font-size:1rem;">Momentum</span>
+</div>
+<div style="font-size:1.5rem; margin-top:-40px; font-weight:600">Left-Handed</div>
+:::
+    
+::: {data-id="right" class="fragment zoom-in" data-fragment-index="3" style="background: #af1212ff; width:200px; height:200px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350; text-align:center; flex-direction: column;"}
+<div>
+  <span style="position:relative; left:-40px; font-size:1rem;">Spin</span>
+  <span style="position:relative; left:-50px; font-size:2rem;">↑</span>
+</div>
+<div>
+  <span style="position:relative; left:38px; top:-50px; font-size:2rem;">↑</span>
+  <span style="position:relative; left:34px; top:-50px; font-size:1rem;">Momentum</span>
+</div>
+<div style="font-size:1.5rem; margin-top:-40px; font-weight:600">Right-Handed</div>
+
+:::
+:::
+
+<div style="text-align:right; margin-top:-160px; margin-left:600px;font-size:0.85em">
+
+<ul>
+    <li class="fragment" data-fragment-index="1">
+      <strong>Helicity/Chirality </strong> in the $\small m_q \to 0$ <br>
+      $$\small \hat{h} = \frac{\vec{s} \cdot \vec{p}}{|\vec{p}|} $$
+    </li>
+            
+  <li class="fragment fade-in-then-semi-out" data-fragment-index="2">
+      <strong>Left-Handed ($L$):</strong> <br>
+      Spin is <em>anti-parallel</em> to momentum.
+      $$ \hat{h}\psi_L = -1\psi_L $$
+    </li>
+
+  <li class="fragment fade-in-then-semi-out" data-fragment-index="3">
+      <strong>Right-Handed ($R$):</strong> <br>
+      Spin is <em>parallel</em> to momentum.
+      $$ \hat{h}\psi_R = +1\psi_R $$
+    </li>
+  </ul>
+</div>
+
+::: {class="fragment fade-up" style="font-size:1em; font-style:italic; color:gray; margin-top:-10px; margin-left:47%; text-align:left; font-weight:400px;"  }
+[Sphaleron transitions]{style="color: #EB811B;"} can change [topology]{style="color: #EB811B; "},<br> generating an axial charge density $N_5$.
+:::
+
+## 1) Chiral Magnetic Effect {auto-animate=true }
+Early stage of the Universe ($\small 10^{-6}\mathrm{s}$) → Quark-Gluon plasma 
+
+::: {.r-hstack style="transform: translateX(-200px) translateY(100px)"}
+::: {data-id="left" style="background: #0d3d96ff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350;text-align:center; flex-direction: column; margin-right:60px;"}
+
+:::
+    
+::: {data-id="right" style="background: #af1212ff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350; text-align:center; flex-direction: column;"}
+
+:::
+:::
+
+
+::: columns
+
+::: {.column width="50%"}
+<div style="transform: scale(0.65); transform-origin: top left; position:relative; width:600px; height:600px; margin-top: 20px; border: 1px dashed gray; border-radius: 15px;">
+
+  <div data-id="p1" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:80px; top:80px;"></div>
+  <div data-id="p2" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:150px; top:400px;"></div>
+  <div data-id="p3" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:350px; top:150px;"></div>
+  <div data-id="p4" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:480px; top:450px;"></div>
+  
+  <div data-id="p9" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:380px; top:80px;"></div>
+  <div data-id="p10" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:50px; top:500px;"></div>
+  <div data-id="p11" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:550px; top:350px;"></div>
+
+  <div data-id="p5" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:120px; top:300px;"></div>
+  <div data-id="p6" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:280px; top:60px;"></div>
+  <div data-id="p7" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:450px; top:250px;"></div>
+  <div data-id="p8" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:250px; top:320px;"></div>
+  
+  <div data-id="p12" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:400px; top:500px;"></div>
+  <div data-id="p13" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:20px; top:200px;"></div>
+  <div data-id="p14" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:300px; top:250px;"></div>
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+::: {class="fragment" style="margin-top: 0px ;margin-left:-50px; font-size: 0.85em;"}
+1. At $T \gg T_c$ (${\sim}155$ MeV)→ **Deconfinement**
+ <!--quarks and gluons are the relevant degrees of freedom (Asymptotic Freedom).-->
+
+:::
+
+::: {class="fragment" style="margin-top: 0px;margin-left:-50px;font-size: 0.85em;"}
+2. QCD interactions are vector-like<br> 
+<span style="font-size:0.9em; color:#888">preserve CP globally at $\small \theta=0$</span>
+
+$$\underbrace{\langle N_L-N_R }_{\color{#EB811B}\large N_5}\rangle=0$$
+
+<!--at equilibrium -->
+:::
+
+::: {class="fragment" style="margin-top: 0px; margin-left:-50px; font-size: 0.85em;"}
+3. **But** topology can induce local imbalance: <br>
+  <span style="font-size:0.9em; color:#888">via Atiyah-Singer Index Theorem</span>
+
+  $$ Q = \int d^4x \, q(x) = N_L - N_R \equiv N_5$$
+  <div style="margin-top:10px; font-size:0.9em; color:#af1212ff">
+  $~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\Rightarrow$ Fluctuations of $Q$ drive $N_5 \neq 0$
+  </div>
+:::
+
+:::
+:::
+
+
+## 1) Chiral Magnetic Effect {auto-animate=true }
+<style>
+  /* FIX: We use width/height/margin for the bounce 
+     instead of 'transform: scale'.
+     This prevents conflicts with Reveal.js positioning.
+     
+     Base size: 30px.
+     Peak size (1.6x): 48px.
+     Margin offset at peak: -(48px - 30px) / 2 = -9px.
+  */
+  @keyframes bounce-flip-safe {
+    0% {
+      width: 30px;
+      height: 30px;
+      margin: 0px;
+      background-color: #af1212ff; /* Start Red */
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+    40% {
+      width: 48px;        /* 30 * 1.6 */
+      height: 48px;
+      margin: -9px;       /* Keep centered as it grows */
+      background-color: #EB811B; 
+      box-shadow: 0 0 30px #EB811B;
+      z-index: 100;
+    }
+    100% {
+      width: 30px;
+      height: 30px;
+      margin: 0px;
+      background-color: #0d3d96ff; /* End Blue */
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+  }
+
+  /* Trigger animation when slide is present */
+  section.present .flipping {
+    animation: bounce-flip-safe 1.5s ease-in-out;
+  }
+</style>
+Sphaleron Transition occurs! ($N_R \to N_L$)
+
+::: {.r-hstack style="transform: translateX(-200px) translateY(100px)"}
+::: {data-id="left" style="background: #0d3d96ff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350;text-align:center; flex-direction: column; margin-right:60px;"}
+
+:::
+    
+::: {data-id="right" style="background: #af1212ff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-weight:350; text-align:center; flex-direction: column;"}
+
+:::
+:::
+::: columns
+
+::: {.column width="50%"}
+
+
+<div data-id="box" style="transform: scale(0.65); transform-origin: top left; position:relative; width:600px; height:600px; margin-top: 20px; border: 2px dashed #EB811B; border-radius: 15px; box-shadow: 0 0 15px rgba(235,129,27,0.2);">
+
+<div data-id="p1" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:80px; top:80px; transition: background 1s;"></div>
+  <div data-id="p2" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:150px; top:400px;"></div>
+  <div data-id="p3" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:350px; top:150px; transition: background 1s;"></div>
+  <div data-id="p4" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:480px; top:450px;"></div>
+  <div data-id="p9" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:380px; top:80px; transition: background 1s;"></div>
+  <div data-id="p10" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:50px; top:500px;"></div>
+  <div data-id="p11" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:550px; top:350px;"></div>
+  <div data-id="p6" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:280px; top:60px;"></div>
+  <div data-id="p13" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:20px; top:200px;"></div>
+  
+  <div data-id="p12" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:400px; top:500px;"></div>
+
+  <div   class="flipping" style="width:30px; height:30px; border-radius:50%; position:absolute; left:120px; top:300px;background-color: #0d3d96ff;"></div>
+  
+  <div  class="flipping" style="width:30px; height:30px; border-radius:50%; position:absolute; left:450px; top:250px; background-color: #0d3d96ff;"></div>
+  <div  class="flipping" style="width:30px; height:30px; border-radius:50%; position:absolute; left:250px; top:320px; background-color: #0d3d96ff;"></div>
+  <div  class="flipping" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:300px; top:250px;"></div>
+
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+::: {class="fragment" style="margin-top: -40px ;margin-left:-50px; font-size: 0.85em;text-align:center;"}
+<strong>Finite Sphaleron Rate</strong> ($\Gamma_{\text{sphal}} \neq 0$)
+
+:::
+
+::: {class="fragment" style="margin-top: -10px;margin-left:-50px;font-size: 0.85em; text-align:center;"}
+↓
+:::
+
+::: {class="fragment" style="margin-top: -10px;margin-left:-50px;font-size: 0.85em; text-align:center;"}
+<strong>Barrier Crossing:</strong> <br>
+      Thermal fluctuations overcome the energy barrier separating distinct topological vacua.
+:::
+
+::: {class="fragment" style="margin-top: 30px; margin-left:-50px; font-size: 0.85em;"}
+<strong>The Anomaly:</strong> <br>
+      Transitions change  $Q$, driving axial charge via:
+      $$ \partial_\mu j^\mu_5 = 2N_f \underbrace{\frac{g^2}{32\pi^2} G_{\mu\nu}\tilde{G}^{\mu\nu}}_{q(x)} $$
+<!-- \Delta N_5 = 2N_f\, \Delta Q_{\text{top}}.-->
+:::
+
+::: {class="fragment" style="margin-top: -20px; margin-left:-50px; font-size: 0.85em;"}
+<strong>Result:</strong> <br>
+      Creation of local <strong>Chiral Imbalance</strong>:
+      
+$$\Delta Q \neq 0 \Rightarrow \Delta N_5 \neq 0 \Rightarrow \mathrm{e.g.}~~ N_L > N_R $$
+      
+
+:::
+
+
+
+
+:::
+
+:::
+
+## 1) Chiral Magnetic Effect {auto-animate=true}
+
+Magnetic Field $\vec{B}$ + Imbalance $\to$ Electric Current $\vec{J}$
+
+:::columns
+::: {.column width="50%"}
+<div style="transform: scale(0.65) translateY(18px); transform-origin: top left; position:relative; width:600px; height:600px; margin-top: 20px; border: 2px dashed #EB811B; border-radius: 15px; box-shadow: 0 0 15px rgba(235,129,27,0.2);">
+  
+  <div class="" data-fragment-index="1" style="position:absolute; left: -90px; top: 110px; display:flex; flex-direction:column; align-items:center;">
+      
+  <div style="font-size: 2em; color: gray; font-weight:bold; margin-bottom: -10px;">$\vec{B}$</div>
+
+  <svg width="40" height="350" viewBox="0 0 40 350" style="overflow: visible;"><defs><marker id="arrowhead-gray" markerWidth="8" markerHeight="7" 
+                  refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="gray" /></marker></defs><line x1="20" y1="350" x2="20" y2="5" 
+              stroke="gray" stroke-width="3" 
+              marker-end="url(#arrowhead-gray)" /></svg>
+  </div>
+
+  <div data-id="p1" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:80px; top:550px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="right" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:540px; top:20px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="left" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:420px; top:450px; opacity:0.8; transition: top 2s ease;"></div>
+
+  <div data-id="p2" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:150px; top:520px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p3" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:350px; top:560px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p4" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:480px; top:540px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p9" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:380px; top:500px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p10" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:50px; top:520px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p11" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:550px; top:530px; opacity:0.8; transition: top 2s ease;"></div>
+  
+  <div data-id="p5" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:120px; top:480px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p7" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:450px; top:510px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p8" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:250px; top:540px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p14" style="background: #0d3d96ff; width:30px; height:30px; border-radius:50%; position:absolute; left:300px; top:490px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p12" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:400px; top:20px; opacity:0.8; transition: top 2s ease;"></div>
+
+  <div data-id="p6" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:280px; top:50px; opacity:0.8; transition: top 2s ease;"></div>
+  <div data-id="p13" style="background: #af1212ff; width:30px; height:30px; border-radius:50%; position:absolute; left:20px; top:20px; opacity:0.8; transition: top 2s ease;"></div>
+
+  <div class="fragment" data-fragment-index="2" style="position:absolute; right: -90px; top: 110px; display:flex; flex-direction:column; align-items:center;"><div style="font-size: 2em; color: #EB811B; font-weight:bold; margin-bottom: -10px;">$\vec{J}$</div><svg width="40" height="350" viewBox="0 0 40 350" style="overflow: visible;"><defs> <marker id="arrowhead-orange" markerWidth="8" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#EB811B"/></marker></defs><line x1="20" y1="0" x2="20" y2="345"stroke="#EB811B" stroke-width="3" marker-end="url(#arrowhead-orange)"/></svg>
+  </div>
+  
+</div>
+
+:::
+
+::: {.column width="50%"}
+
+::: {class="fragment" data-fragment-index="1" style="margin-top: 0px; margin-left:-50px;font-size: 0.85em;"}
+
+* $\vec{B}$ aligns all spins ($\downarrow$)
+* **Left-handed**: $\vec{p}\parallel -\vec{s}$ → move **Down**
+* **Right-handed**: $\vec{p}\parallel \vec{s}$ → move **Up**
+
+Net motion is dominated (e.g.) by **Left-handed** fermions 
+:::
+
+::: {class="fragment" data-fragment-index="2" style="background: rgba(235, 129, 27, 0.1); padding: 15px; border-left: 5px solid #EB811B; margin-top: 30px; font-size: 0.85em;"}
+<!--**Result:**-->
+
+A chiral imbalance ($\small N_5 \neq 0$) together with $\vec{B}$ produces a CME current **opposite** to $\vec{B}$:[[1]]{color=gray}
+
+$$
+\vec{J}_{\text{CME}} \propto N_5 \,\vec{B}
+$$
+:::
+
+
+
+
+:::
+
+
+::: {class="fragment" style="font-size:1.0em; font-style:italic; color:gray; margin-top:-210px; margin-left:48%; text-align:left;"}
+Intense ongoing experimental efforts  to detect <br > CME currents at heavy-ion colliders RHIC and LHC [[2]]{color=gray}
+:::
+
+::::::
+<!-- Because sphalerons occur with equal probability of positive/negative \Delta Q_{\text{top}}, the CME current is locally directional but globally averages to zero unless CP violation or dynamics bias the sign.-->
+
+
+
+
+
+
+
+
+## 2) Axion Cosmology needs the rate at finite $p$
+
+::: {class="fragment" data-fragment-index="1" style="margin-bottom: 22px; border-left: 5px solid #EB811B; padding-left: 15px; background: rgba(235, 129, 27, 0.05);"}
+**The Axion:** <br>A pseudo-Goldstone boson proposed to solve the **Strong CP Problem**
+ and also a leading **Dark Matter** candidate.
+:::
+
+::: {class="fragment" data-fragment-index="2" style="font-size: 0.95em;"}
+**Thermal production in the Early Universe** ($\small T \sim T_c \div 10\, T_c$): the axion relic abundance follows from a [**momentum-dependent**]{style="color: #EB811B;"} Boltzmann equation [[3]]{color=gray}
+$$ \small \frac{df_{\vec{p}}}{dt} = \left(1+f_{\vec{p}}\right)\Gamma_{a}^{(+)}(p) - f_{\vec{p}}\,\Gamma_{a}^{(-)}(p) $$
+:::
+
+::: {class="fragment" data-fragment-index="3" style="margin-bottom: 10px; border-left: 5px solid rgba(4, 41, 110, 0.84); padding-left: 15px; background: rgba(13, 61, 150, 0.04);"}
+**The Key Input:**
+the axion interaction rates are fixed by the **topological rate** at [on-shell]{style="font-weight:450;"} four-momentum:
+
+<div style="font-size: 1.05em; text-align:center; color: #0c2344; font-weight:bold; margin-top:-18px;">
+$$ \small \Gamma_a^{(-)}(p)=e^{E_p/T}\, \Gamma_a^{(+)}(p)=\frac{\Gamma_{\text{top}}(\omega = E_p,\, p)}{2 E_p f_a^2}, \qquad E_p = \sqrt{m_a^2 + p^2} \simeq p $$
+</div>
+:::
+
+::: {class="fragment" data-fragment-index="4" style="font-size:0.95em; font-style:italic; color:gray; margin-top: 14px; margin-left:8%; text-align:left;"}
+Higher momenta decouple **later** from the thermal bath: axion production may equilibrate <br>
+at different times depending on $p$ $~\Rightarrow~$ [we need $\Gamma_{\mathrm{top}}$ at **finite momentum**]{style="color: #EB811B;"}
+:::
+
+
+## This work
+
+::: {style="text-align:center; margin-top: 2.2em;"}
+The full momentum-dependent generalization of the sphaleron rate:
+:::
+
+$$
+\Gamma_{\mathrm{top}}(\omega,p) = \int dt\, d^3x~ e^{\,i x_\mu p^\mu}\, \langle q(\vec{x},t)\, q(\vec{0},0)\rangle _T\,,
+\qquad p_\mu = (\omega, \vec p)
+$$
+
+::: {.fragment style="margin-top: 0.6em;"}
+- $\;\Gamma_{\mathrm{sphal}} = \lim_{\omega,\,p \to 0} \Gamma_{\mathrm{top}}(\omega,p)$: computed on the lattice in pure gauge [[7]]{color=gray} and full QCD [[8]]{color=gray}
+- $p \neq 0$: **essentially unexplored** non-perturbatively
+:::
+
+::: {.fragment .eqbox style="display:block; width:max-content; margin:0.7em auto; text-align:center; margin-top:2.5em;"}
+**This talk**: proof-of-concept in quenched SU(3) at $T \simeq 1.24\,T_c \simeq 360$ MeV:<br>
+$\Gamma_{\mathrm{top}}(\omega, p)$ for momenta up to $p/T \sim 10$, both **off-shell** and **on-shell** ($\omega = p$)
+:::
+
+::: {.fragment .lead style="text-align:center; margin-top:1.0em"}
+A controlled feasibility study in view of the (much more expensive) full-QCD case.
+:::
+
+
+## From Real Time to Euclidean Time
+
+<div style="margin-bottom: 16px; text-align:left; ">
+- The topological rate is a <span style="color: #EB811B; font-weight:bold;">Real-Time</span> transport coefficient</br> but the lattice lives in **Euclidean time** ($t \to -i\tau$, $\;0 \le \tau \le 1/T$).
+</div>
+
+::: {class="fragment fade-in" data-fragment-index="1"}
+- What we can measure is the **Euclidean correlator** at spatial momentum $\vec p$:
+$$ G_E(\tau, p) = \int d^3x \; e^{\,i\vec{p}\cdot\vec{x}}\, \langle q(\vec{x}, \tau)\, q(\vec{0}, 0)\rangle_E $$
+:::
+
+::: {class="fragment fade-in" data-fragment-index="2" style="margin-top: 0.5em;"}
+- It is related to the rate through the **spectral density** $\rho(\omega,p)$, via the Kubo formula [[4]]{color=gray}:
+
+::: {.eqbox style="display:block; width:max-content; margin:0.3em auto; text-align:center"}
+$$ \Gamma_{\mathrm{top}}(\omega,p) = \frac{2}{1-e^{-\omega/T}}\; \rho(\omega,p) $$
+:::
+:::
+
+::: {class="fragment fade-in" data-fragment-index="3" style="margin-top: 22px; margin-left:320px; color: gray; font-style: italic; text-align: center;"}
+[**The Challenge:**]{style="color: #EB811B ;"}<br> How to recover $\rho(\omega, p)$ from noisy lattice data for $G_E(\tau, p)$?
+:::
+
+
+## An ill-posed inverse problem
+
+<div style="margin-top: 6px; border: 2px solid #666; padding: 0px; border-radius: 15px;">
+  $$ G_E({\color{#EB811B}\tau_i}, p) = -\int_0^\infty \frac{d\omega}{\pi} \left[\frac{\rho(\omega,p)}{\omega}\right] K'(\omega, {\color{#EB811B}\tau_i}), \quad K'(\omega,\tau) = \omega\, \frac{\cosh\left(\frac{\omega}{2T} - \omega\tau\right)}{\sinh\left(\frac{\omega}{2T}\right)} $$
+</div>
+
+::: {.note style="text-align:center; margin-top:0.3em"}
+Working with $\rho(\omega,p)/\omega$ keeps both the unknown and the kernel finite as $\omega \to 0$.
+:::
+
+::: columns
+::: {.column width="60%"}
+
+<div class="fragment" style="margin-top: 18px; font-size: 0.9em;">
+**Input from the Lattice:**
+
+* Finite set of points: $\tau/a = 1, \ldots, N_\tau/2$
+* Noisy, correlated data: $G_E(\tau_i, p) \pm \sigma_i$
+</div>
+:::
+
+::: {.column width="40%"}
+<div class="fragment" style="margin-top: 18px; font-size: 0.9em;">
+**The Unknown (Physics):**
+
+* Continuous function $\rho(\omega, p)$
+* Infinite degrees of freedom
+</div>
+
+:::
+:::
+
+<div class="fragment" style="margin-top: 26px; border-left: 5px solid #EB811B; padding-left: 20px; padding-top: 5px; padding-bottom: 10px; background: #ec811d1f;">
+  <strong style="color:#EB811B">The Problem:</strong><br>
+  This is a **Fredholm Integral Equation of the 1st Kind** ⇒ **Ill-Posed**.<br>
+   Infinitely many $\rho(\omega, p)$ reproduce the discrete data within error bars.
+</div>
+
+
+## The HLT method
+
+<div style="margin-bottom: 6px; font-size: 0.95em; margin-top:-1em;">
+  No pointwise reconstruction → target a <span style="color: #EB811B; font-weight:bold;">smeared spectral density</span> built as a linear combination of the data [[5]]{color=gray}:
+</div>
+
+::: {.eqbox style="display:block; width:max-content; margin:0.00em auto; text-align:center"}
+$$ \frac{\bar\rho(\omega^*, p)}{\omega^*} = -\pi \sum_{\tau = a}^{1/(2T)} g_\tau(\omega^*)\, G_E(\tau, p) \;=\; \int_0^\infty d\omega\; \Delta(\omega, \omega^*)\, \frac{\rho(\omega,p)}{\omega} $$
+:::
+
+::: columns
+::: {.column width="52%"}
+
+::: {.fragment style="font-size: 0.85em; margin-top: 1.5em;"}
+The coefficients $g_\tau(\omega^*)$ define the **smearing kernel**
+$$ \Delta(\omega, \omega^*) = \sum_\tau g_\tau(\omega^*)\, K'(\omega, \tau) $$
+
+chosen so that $\Delta$ resembles a **target kernel** of width $\sigma$:
+$$ \delta_\sigma(\omega, \omega^*) = \frac{4}{\sigma \pi^2} \frac{x}{\sinh(x)}, \quad x = \frac{\omega - \omega^*}{\sigma} $$
+:::
+
+::: {.fragment .lead style="margin-top: 0.6em; font-size: 0.8em; text-align:center;"}
+$\sigma$ is an **input**!
+:::
+
+:::
+::: {.column width="48%"}
+
+::: {.fragment style="margin-top: 6px; width: 75%; text-align:center;"}
+![](fin_plot_sphalerons/reco_plot_comp.svg)
+
+::: {.note style="text-align:center; margin-top:-0.2em"}
+Reconstructed $\Delta$ vs target $\delta_\sigma$ at $\omega^*/T = p/T \simeq 4.71$.
+:::
+:::
+
+:::
+:::
+
+
+## Fixing the coefficients: the HLT functional
+
+<div style="text-align:center;margin-top:-14px; margin-bottom: 0px; font-size: 1.05em;">
+  The $g_\tau(\omega^*)$ minimize a functional balancing accuracy and stability:
+
+  $$F_\lambda[g] = (1-\lambda)\, A_\alpha[g] + \lambda\, B[g]$$
+</div>
+
+::: columns
+::: column 
+:::{class="fragment"}
+<div style="border: 1px solid #444; padding: 15px; border-radius: 10px; background: rgba(255,255,255,0.05);">
+<div style="text-align:center; color: #EB811B; font-weight:bold; margin-bottom:10px;">
+1. Resolution Error (Bias)
+</div>
+  
+$$A[g] = \int_{0}^\infty d\omega \, \left[ \Delta_\sigma  (\omega) - \delta_\sigma(\omega) \right]^2 e^{2\omega}$$
+  
+* Penalizes deviations from the **target** $\delta_\sigma$.
+* Enforces the correct "smearing shape."
+</div>
+
+:::
+
+:::
+
+::: column 
+::: {class="fragment"}
+<div style="border: 1px solid #444; padding: 15px; border-radius: 10px; background: rgba(255,255,255,0.05);">
+<div style="text-align:center; color: #EB811B; font-weight:bold; margin-bottom:10px;">
+2. Statistical Error (Variance)
+</div>
+
+$$B[g] = \mathbf{g}^T \cdot \mathbf{Cov} \cdot \mathbf{g}$$
+  
+* Penalizes the **variance** of the estimator due to data noise.
+* Reduces explosion of coefficients $g_\tau$.
+
+</div>
+:::
+
+:::
+
+:::
+
+<div class="fragment" style="margin-top: 30px; text-align: center;">
+  The parameter $\lambda \in [0, 1)$ controls the trade-off. <br>
+  <span style="font-size: 0.8em; color: gray;">(Unlike standard Backus-Gilbert, we fix $\sigma$ as an input and scan $\lambda$ for stability.)</span>
+</div>
+
+---
+
+
+
+
+## Lattice setup
+
+::: columns
+::: {.column width="52%"}
+
+::: {style="font-size: 0.82em; margin-top: 4px;"}
+**Discretization:**</br> Wilson plaquette action, heat-bath + over-relaxation:
+$$\mathcal{S}_{\mathrm{YM}}[U] = -\frac{\beta}{3} \sum_{x,\mu>\nu} \mathrm{Re}\,\mathrm{Tr}\left[U_{\mu\nu}(x)\right]$$
+
+**Observable**</br>
+Clover topological charge density $q_L(x)$ after **cooling**:
+$$ Q_L^{\vec{p}}(n_t) = \sum_{\vec{n}} e^{i\vec{p}\cdot\vec{n}} q_L(n_t, \vec{n}) $$
+
+and we compute the correlator:
+  $$ G^{\vec{p}}(\tau) = \langle Q_L^{\vec{p}}(\tau) Q_L^{-\vec{p}}(0) \rangle $$
+
+
+
+:::
+
+:::
+::: {.column width="48%"}
+
+::: {style="font-size: 0.85em; text-align:center; margin-top: 0.2em;"}
+**Line of Constant Physics:** $\;T \simeq 1.24\,T_c$, $\;LT = 4$
+:::
+<div style="text-align:center; margin-top: 1.2em;">
+<table class="simstab" style="font-size:0.85em;">
+<tr><th>$N_s$</th><th>$N_\tau$</th><th>$\beta$</th><th>$a$ $\mathrm{[fm]}$</th><th>$T/T_c$</th><th>$\mathrm{Stat}$</th></tr>
+<tr><td>48</td><td>12</td><td>6.440</td><td>0.0460(7)</td><td>1.244(18)</td><td>53.9k</td></tr>
+<tr><td>56</td><td>14</td><td>6.559</td><td>0.0395(6)</td><td>1.242(18)</td><td>21.7k</td></tr>
+<tr><td>64</td><td>16</td><td>6.665</td><td>0.0345(5)</td><td>1.244(18)</td><td>15.7k</td></tr>
+</table>
+
+</div>
+
+::: {.fragment style="font-size: 0.85em; margin-top: 1.5em;"}
+**Momenta** along $\hat x$, quantized by the spatial size:
+$$ ap = \frac{2\pi}{N_s} k \;\;\Rightarrow\;\; \frac{p}{T} = \frac{\pi}{2}\, k, \quad k = 0, \ldots, 6 $$
+
+::: {style="text-align:center; color:#8a9aa0; font-size: 0.9em; font-weight: 400; margin-top: 4px;"}
+$LT=4$ (vs 3 of [[7]]{color=gray}) → finer momenta, up to $p/T \simeq 9.4$
+:::
+:::
+
+:::
+:::
+
+<div class="fragment" style="margin-top: 0.3em; border-left: 4px solid #af1212ff; padding-left: 15px; font-size: 0.94em;">
+  **Artifacts:** <br>Smoothing introduces a new scale $R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}$ [[6]]{color=gray}<br>
+  <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em>
+</div>
+
+## Three limits, two independent strategies
+
+::: {style="font-size: 0.9em; margin-top: 2px;"}
+A controlled result requires **three** limits:
+
+1. **Continuum** $a \to 0\;$ at fixed $(\tau T,\, p/T,\, R_s T)$;
+2. **Zero smoothing** $R_s \to 0\;$ (after $a \to 0$) → restores the physical short-distance behavior;
+3. **Zero smearing width** $\sigma \to 0\;$ in the HLT inversion.
+:::
+
+::: {.fragment style="margin-top: 2.50em;"}
+
+::: {style="text-align:center; font-size:0.85em; font-weight:bold; color:#9c162a;"}
+Method 1 → extrapolate first, invert last
+:::
+
+::: {.flow}
+[$G_E(\tau, p;\, a, R_s)$]{.box} [→]{.arrow} [$a \to 0$, then $R_s \to 0$]{.box} [→]{.arrow} [HLT]{.box .net} [→]{.arrow} [$\Gamma_{\mathrm{top}}(\omega, p)$]{.box}
+:::
+
+:::
+
+::: {.fragment style="margin-top: 10px;"}
+
+::: {style="text-align:center; font-size:0.85em; font-weight:bold; color:#3b7ea1;"}
+Method 2 → invert first, extrapolate last
+:::
+
+::: {.flow}
+[$G_E(\tau, p;\, a, R_s)$]{.box} [→]{.arrow} [HLT]{.box .net} [→]{.arrow} [$a \to 0$, then $R_s \to 0$]{.box} [→]{.arrow} [$\Gamma_{\mathrm{top}}(\omega, p)$]{.box}
+:::
+
+:::
+
+::: {.fragment .lead style="text-align:center; margin-top: 26px;"}
+Two different orderings of ill-conditioned steps: their **agreement** is a strong check<br> that all systematics are under control [[7]]{color=gray}.
+:::
+
+
+## Method 1: the double extrapolation
+
+::: {style="text-align:center; font-size: 0.8em; margin-top:-1.0em; margin-bottom: 6px; color:#33474b;"}
+$\frac{1}{T^5}G_E = \frac{1}{T^5}G_E\big|_{\mathrm{cont}} + C_1 (aT)^2$ at fixed $R_sT\;$ → $\;\frac{1}{T^5}G_E\big|_{\mathrm{cont}} = \frac{1}{T^5}G_E\big|_{R_s \to 0} + C_2 (R_sT)^2$
+:::
+
+::: columns
+::: {.column width="50%" class="fragment"}
+  <div style="text-align:center; font-size: 0.75em; font-weight:bold; color:#1f77b4;">Step 1: Continuum limit ($a \to 0$)</div>
+  <img src="fin_plot_sphalerons/cont_ext_k2_035.svg" style="width:100%;">
+  <div style="font-size: 0.68em;text-align:center; color: #0061a1;">Smooth, almost flat: slope mildly dependent on $\tau T$, $R_s T$, $p/T$.</div>
+:::
+
+::: {.column width="50%" class="fragment"}
+  <div style="text-align:center; font-size: 0.75em; font-weight:bold; color: #d62728;">Step 2: Zero-smoothing limit ($R_s \to 0$)</div>
+  <img src="fin_plot_sphalerons/zero_cooling_fixed_tT035_all_k.svg" style="width:100%;">
+  <div style="font-size: 0.68em; text-align:center; color: #eb3c39;">Linear in $(R_sT)^2$, fit range restricted to $R_s < \tau$.</div>
+:::
+:::
+
+<div class="fragment" style="margin-top: 4px; text-align: center; font-size: 0.85em; color: gray; font-style: italic;">
+  $R_s < \tau$ shrinks the usable window as $\tau$ decreases → reliable double limit for $0.25 \le \tau T \le 0.5$.
+</div>
+
+
+## Method 1: physical correlators recovered
+
+::: columns
+::: {.column width="50%" class="fragment"}
+  <img src="fin_plot_sphalerons/continuum_vs_tT_with_double_extrapolation_band.svg" style="width:100%;">
+  <div style="font-size: 0.7em; text-align:center; color:#8a9aa0; margin-top:-4px;">
+  Smoothing distorts short distances → $G_E > 0$ for $\tau \lesssim R_s$, violating reflection positivity. The double limit (band) restores $G_E < 0$ at all $\tau > 0$.
+  </div>
+:::
+
+::: {.column width="50%" class="fragment"}
+  <img src="fin_plot_sphalerons/corr_double_ext.svg" style="width:90%;">
+  <div style="font-size: 0.7em; text-align:center; color:#8a9aa0; margin-top:-4px;">
+  Final double-extrapolated correlators for all momenta $p/T.
+  </div>
+:::
+:::
+
+<div class="fragment" style="margin-top: 10px; border-left: 5px solid #EB811B; padding-left: 15px; background: rgba(235,129,27,0.07); font-size: 0.9em;">
+**Observation:** $G_E(\tau, p)$ is **suppressed** with $p$ at every time separation.<br>
+One might expect the rate to simply follow this suppression, <strong>but does it?!</strong>
+</div>
+
+
+## Method 1: HLT inversion at work
+
+::: {style="text-align:center; font-size: 0.85em; margin-top:-6px; margin-bottom: 4px;"}
+Inversion at $\omega^*/T = p/T \simeq 4.71$, for each $(\omega/T, p/T)$ pair, scan $\lambda$ and several $\sigma/T \in [1.25, 2.5]$
+:::
+
+::: columns
+::: {.column width="50%" class="fragment"}
+  <img src="fin_plot_sphalerons/stab_plot_k3.svg" style="width:100%;">
+  <div style="font-size: 0.7em; text-align:center; color:#403f3f; margin-top:-4px;">
+  Stability analysis: plateau for $d_\lambda \lesssim 0.3$; result from $\lambda_1$, systematic from $\lambda_2$ (summed in quadrature).
+  </div>
+:::
+
+::: {.column width="50%" class="fragment"}
+  <img src="fin_plot_sphalerons/stab_sigma_k3.svg" style="width:89%;">
+  <div style="font-size: 0.7em; text-align:center; color: #403f3f; margin-top:-4px;">
+  Smearing-width dependence: flat within errors, as expected from $\Gamma_{\mathrm{top}}\big|_\sigma = \Gamma_{\mathrm{top}} + C\sigma^2 + \ldots$
+  </div>
+:::
+:::
+
+::: {.fragment .lead style="text-align:center; margin-top: 10px;"}
+No detectable $\sigma$-dependence → final values quoted at $\sigma/T = 1.75$, the middle of the explored range.
+:::
+
+
+## Method 2: invert first, extrapolate the rate
+
+::: {.lead style="text-align:center; margin-top:-4px; margin-bottom:14px;"}
+Invert the finite $(a, R_s)$ correlators, then repeat the **double limit on the rate** $\Gamma_{\mathrm{top}}$ itself.
+:::
+
+::: columns
+::: {.column width="47%"}
+  <img src="fin_plot_sphalerons/cont_lim_met2.svg" class="fragment semi-fade-out" data-fragment-index="1" style="width:100%;">
+
+::: {.note .fragment .semi-fade-out fragment-index=1 style="text-align:center; margin-top:-4px;"}
+Continuum limit at fixed $R_sT$ &nbsp;($\omega/T = p/T \simeq 6.28$):<br>smooth, slope practically independent of $R_sT$.
+:::
+:::
+
+::: {.column width="53%"}
+
+::: {.fragment .card fragment-index=1 style="margin-top:2.5em; font-size:0.84em;"}
+**Then $R_s \to 0$, on the rate**
+
+* a **plateau** in $(R_sT)^2$ appears at small $R_s$;
+* the scales driving $\Gamma_{\mathrm{top}}$ decouple from the UV cutoff $R_s$;
+* plateau shrinks as $\omega/T$ grows — as expected.
+:::
+
+::: {.fragment .eqbox fragment-index=2 style="display:block; margin:22px auto 0; text-align:center; font-size:0.8em;"}
+constant fit (err ×2.5) &amp; linear fit in $(R_sT)^2$<br>→ **fully compatible**
+:::
+
+:::
+:::
+
+
+## Two orderings of the limits, one rate
+
+::: {style="display:flex; justify-content:center; gap:1.6em; margin-top:-2px; margin-bottom:8px;"}
+[<span class="mk" style="color:#eb811b;">★</span> Method 2 → invert, then extrapolate]{.chip}
+[<span class="mk" style="color:#1f3a5f;">◇</span> Method 1 → extrapolate, then invert]{.chip}
+:::
+
+<img src="fin_plot_sphalerons/contlim_first6E_final_result_subplots.svg" style="width:74%; margin:0 auto;">
+
+::: {.fragment .takeaway style="margin-top:10px; font-size:0.82em;"}
+The two independent orderings **agree at every energy** &nbsp;→&nbsp; all systematics under control.
+:::
+
+
+## The on-shell rate grows with momentum {.money}
+
+::: {style="text-align:center; font-size: 0.8em; margin-top:-10px; color:#33474b;"}
+$\omega = p$ (axion kinematics). Plotted: $\;f(\omega)^{-1}\, \Gamma_{\mathrm{top}}/T^4 = \rho(\omega = p, p)/\omega$, with $f(\omega) = \frac{\omega/T}{1 - e^{-\omega/T}}$
+:::
+
+![](fin_plot_sphalerons/summary_extrapolated_results.svg)
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.fragment .lead style="text-align:center; font-size: 0.74em; margin-top: 0.2em"}
+$\rho(p,p)/\omega$ reaches a **plateau** for $p/T \gtrsim 3$:<br>
+$f^{-1}\Gamma_{\mathrm{top}}/T^4 \approx 0.216(32)$ &nbsp;⇒&nbsp; $\Gamma_{\mathrm{top}}(p)$ grows **linearly** in $p$,<br>
+as predicted semiclassically: $\Gamma_{\mathrm{top}}(p) = p\,(\alpha_s T)^3 \left[A \log\frac{pT}{m_D^2} + B\right]$ [[9]]{color=gray}
+:::
+:::
+::: {.column width="50%"}
+::: {.fragment .lead style="text-align:center; font-size: 0.74em; margin-top: 0.2em"}
+**No contradiction** with the suppression of $G_E$:<br> off-shell, $\Gamma_{\mathrm{top}}$ decreases with $p$ only at **fixed** $\omega$, while it **grows** with $\omega$ at fixed $p$.<br>
+On the diagonal $\omega = p$ the growth wins.
+:::
+:::
+::::
+
+
+## Conclusions
+
+<div style="font-size: 0.95em; margin-top: 10px;"></div>
+
+<div class="fragment">
+
+1. **First lattice study of the real-time topological rate at $p \neq 0$:**
+    * proof-of-concept in quenched SU(3) at $T \simeq 1.24\,T_c$, momenta up to $p/T \sim 10$;
+    * HLT inversion of the topological charge density correlator.
+</div>
+
+<div class="fragment">
+
+2. **All systematics under control:**
+    * three limits: $a \to 0$, $R_s \to 0$, $\sigma \to 0$, each shown to be controlled;
+    * two independent strategies (extrapolate → invert vs invert → extrapolate) **agree**.
+</div>
+
+<div class="fragment">
+
+3. **Physics result:**
+    * on-shell rate $\Gamma_{\mathrm{top}}(p)$ **increases linearly** with $p$; $\rho(p,p)/\omega$ plateaus at $\approx 0.216(32)\, T^4$ for $p/T \gtrsim 3$ (agreement with semi clasiical??);
+    * a non-trivial, first-principles input toward momentum-dependent axion Boltzmann equations.
+</div>
+
+<div class="fragment" style="margin-top: 16px; border-left: 5px solid #EB811B; padding-left: 15px; background: rgba(235,129,27,0.07);">
+**Outlook → full QCD at the physical point:**
+temperature dependence, and the expected **light-quark enhancement** of the momentum-dependent rate.
+</div>
+
+
+## Thank you for your attention! {.center}
+
+::: {.lead style="text-align:center;"}
+Questions?
+:::
+
+## Why bother? Naive inversion is a catastrophe
+
+<div style="text-align:center; margin-top:-10px;">
+**Mock test**:  &nbsp; synthetic $G(\tau_i)$ from a known $\rho(\omega)$, tiny noise &nbsp; → &nbsp; naive inversion ${\rho} \sim K^{-1} G$
+</div>
+
+<img src="mock2/catastrophe_inverse.svg" style="width:100%; margin-top:-15px;"/>
+
+<div class="fragment" style="margin-top: 0px; border-top: 2px solid #EB811B; padding-top: 10px; text-align: center;">
+  Sub-percent fluctuations in the input explode into $\mathcal{O}(10^9)$ oscillations in the output.<br>
+  The smeared, regularized HLT estimator is <strong>not optional</strong> — it is what makes the problem tractable.
+</div>
+
+## References
+
+::: {style="font-size: 0.72em; line-height: 1.7;"}
+
+[[1]]{color=gray} Fukushima, Kharzeev, Warringa, Phys. Rev. D 78 (2008) 074033 [arXiv:0808.3382] <br>
+[[2]]{color=gray} Kharzeev, Liao, Tribedy, Int. J. Mod. Phys. E 33 (2024) 2430007 [arXiv:2405.05427] <br>
+[[3]]{color=gray} Notari, Rompineve, Villadoro, Phys. Rev. Lett. 131 (2023) 011004 [arXiv:2211.03799] <br>
+[[4]]{color=gray} Meyer, EPJA 47 (2011) 86 — Lowdon, Phys. Rev. D 106 (2022) 045028 <br>
+[[5]]{color=gray} Hansen, Lupo, Tantalo, Phys. Rev. D 99 (2019) 094508 [arXiv:1903.06476] <br>
+[[6]]{color=gray} Bonati, D'Elia, Phys. Rev. D 89 (2014) 105005 [arXiv:1401.2441] <br>
+[[7]]{color=gray} Bonanno, D'Angelo, D'Elia, Maio, Naviglio, Phys. Rev. D 108 (2023) 074515 [arXiv:2305.17120] <br>
+[[8]]{color=gray} Bonanno, D'Angelo, D'Elia, Maio, Naviglio, Phys. Rev. Lett. 132 (2024) 051903 [arXiv:2308.01287] <br>
+[[9]]{color=gray} Moore, Tassler, JHEP 02 (2011) 105 [arXiv:1011.1167] — Notari et al. [arXiv:2211.03799] <br>
+
+:::
