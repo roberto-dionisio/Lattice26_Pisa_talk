@@ -544,7 +544,7 @@ $\frac{1}{T^5}G_E = \frac{1}{T^5}G_E\big|_{\mathrm{cont}} + C_1 (aT)^2$ at fixed
 ::: {.column width="50%" class="fragment"}
   <img src="fin_plot_sphalerons/corr_double_ext.svg" style="width:90%;">
   <div style="font-size: 0.7em; text-align:center; color:#8a9aa0; margin-top:-4px;">
-  Final double-extrapolated correlators for all momenta $p/T.
+  Final double-extrapolated correlators for all momenta $p/T$.
   </div>
 :::
 :::
@@ -773,3 +773,8 @@ $LT=4$ (vs 3 of [[7]]{color=gray}) → finer momenta, up to $p/T \simeq 9.4$
   **Artifacts:** <br>Smoothing introduces a new scale $R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}$ [[6]]{color=gray}<br>
   <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em>
 </div>
+
+## Off-shell Determination 
+
+
+<img src="plot_mom_dep_rate_fatt.svg" style="width:100%; margin-top:-1em;"/>
