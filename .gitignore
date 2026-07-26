@@ -32,7 +32,7 @@ talk_script*
 # ---- loose top-level SVGs from the old deck (keep only the one still used) ---
 /*.svg
 !/lattice3d.svg
-
+!/plot_mom_dep_rate_fatt.svg
 # ---- mock-test folders: keep only the single figure the new talk uses --------
 /mock1/
 /mock3/
