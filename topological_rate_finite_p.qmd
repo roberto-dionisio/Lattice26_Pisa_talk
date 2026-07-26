@@ -675,7 +675,7 @@ On the diagonal $\omega = p$ the growth wins.
 <div class="fragment">
 
 3. **Physics result:**
-    * on-shell rate $\Gamma_{\mathrm{top}}(p)$ **increases linearly** with $p$; $\rho(p,p)/\omega$ plateaus at $\approx 0.216(32)\, T^4$ for $p/T \gtrsim 3$ (agreement with semi clasiical??);
+    * on-shell rate $\Gamma_{\mathrm{top}}(p)$ **increases linearly** with $p$; $\rho(p,p)/\omega$ plateaus at $\approx 0.216(32)\, T^4$ for $p/T \gtrsim 3$;
     * a non-trivial, first-principles input toward momentum-dependent axion Boltzmann equations.
 </div>
 
@@ -685,7 +685,7 @@ temperature dependence, and the expected **light-quark enhancement** of the mome
 </div>
 
 
-## Thank you for your attention! {.center}
+# Thank you for your attention! {.center}
 
 ::: {.lead style="text-align:center;"}
 Questions?
