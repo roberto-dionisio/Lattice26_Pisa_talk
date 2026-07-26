@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Roberto Dionisio">
-  <meta name="dcterms.date" content="2026-07-23">
+  <meta name="dcterms.date" content="2026-07-26">
   <title>Lattice determination of the topological rate at finite momentum in SU(3) Yang–Mills</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -180,7 +180,7 @@ Roberto Dionisio
     </div>
 </div>
 
-  <p class="date">July 23, 2026</p>
+  <p class="date">July 26, 2026</p>
 </section>
 <section id="why-qcd-topology-matters" class="slide level2" data-auto-animate="true">
 <h2 data-id="quarto-animate-title">Why QCD topology matters</h2>
@@ -436,8 +436,8 @@ ready to fall
 <p><strong style="color:#EB811B">The Problem:</strong><br> This is a <strong>Fredholm Integral Equation of the 1st Kind</strong> ⇒ <strong>Ill-Posed</strong>.<br> Infinitely many <span class="math inline">\(\rho(\omega, p)\)</span> reproduce the discrete data within error bars.</p>
 </div>
 </section>
-<section id="the-hlt-method" class="slide level2">
-<h2>The HLT method</h2>
+<section id="the-hansen-lupo-tantalo-hlt-method" class="slide level2">
+<h2>The Hansen-Lupo-Tantalo (HLT) method</h2>
 <div style="margin-bottom: 6px; font-size: 0.95em; margin-top:-1em;">
 <p>No pointwise reconstruction → target a <span style="color: #EB811B; font-weight:bold;">smeared spectral density</span> built as a linear combination of the data <span style=";color: gray;">[5]</span>:</p>
 </div>
@@ -502,114 +502,6 @@ ready to fall
 </div></div>
 <div class="fragment" style="margin-top: 30px; text-align: center;">
 <p>The parameter <span class="math inline">\(\lambda \in [0, 1)\)</span> controls the trade-off. <br> <span style="font-size: 0.8em; color: gray;">(Unlike standard Backus-Gilbert, we fix <span class="math inline">\(\sigma\)</span> as an input and scan <span class="math inline">\(\lambda\)</span> for stability.)</span></p>
-</div>
-</section>
-<section id="lattice-setup" class="slide level2">
-<h2>Lattice setup</h2>
-<div class="columns">
-<div class="column" style="width:52%;">
-<div style="font-size: 0.82em; margin-top: 4px;">
-<p><strong>Discretization:</strong><br> Wilson plaquette action, heat-bath + over-relaxation: <span class="math display">\[\mathcal{S}_{\mathrm{YM}}[U] = -\frac{\beta}{3} \sum_{x,\mu&gt;\nu} \mathrm{Re}\,\mathrm{Tr}\left[U_{\mu\nu}(x)\right]\]</span></p>
-<p><strong>Observable</strong><br> Clover topological charge density <span class="math inline">\(q_L(x)\)</span> after <strong>cooling</strong>: <span class="math display">\[ Q_L^{\vec{p}}(n_t) = \sum_{\vec{n}} e^{i\vec{p}\cdot\vec{n}} q_L(n_t, \vec{n}) \]</span></p>
-<p>and we compute the correlator: <span class="math display">\[ G^{\vec{p}}(\tau) = \langle Q_L^{\vec{p}}(\tau) Q_L^{-\vec{p}}(0) \rangle \]</span></p>
-</div>
-</div><div class="column" style="width:48%;">
-<div style="font-size: 0.85em; text-align:center; margin-top: 0.2em;">
-<p><strong>Line of Constant Physics:</strong> <span class="math inline">\(\;T \simeq 1.24\,T_c\)</span>, <span class="math inline">\(\;LT = 4\)</span></p>
-</div>
-<div style="text-align:center; margin-top: 1.2em;">
-<table class="simstab" style="font-size:0.85em;">
-<tbody><tr>
-<th>
-<span class="math inline">\(N_s\)</span>
-</th>
-<th>
-<span class="math inline">\(N_\tau\)</span>
-</th>
-<th>
-<span class="math inline">\(\beta\)</span>
-</th>
-<th>
-<span class="math inline">\(a\)</span> <span class="math inline">\(\mathrm{[fm]}\)</span>
-</th>
-<th>
-<span class="math inline">\(T/T_c\)</span>
-</th>
-<th>
-<span class="math inline">\(\mathrm{Stat}\)</span>
-</th>
-</tr>
-<tr>
-<td>
-48
-</td>
-<td>
-12
-</td>
-<td>
-6.440
-</td>
-<td>
-0.0460(7)
-</td>
-<td>
-1.244(18)
-</td>
-<td>
-53.9k
-</td>
-</tr>
-<tr>
-<td>
-56
-</td>
-<td>
-14
-</td>
-<td>
-6.559
-</td>
-<td>
-0.0395(6)
-</td>
-<td>
-1.242(18)
-</td>
-<td>
-21.7k
-</td>
-</tr>
-<tr>
-<td>
-64
-</td>
-<td>
-16
-</td>
-<td>
-6.665
-</td>
-<td>
-0.0345(5)
-</td>
-<td>
-1.244(18)
-</td>
-<td>
-15.7k
-</td>
-</tr>
-</tbody></table>
-</div>
-<div class="fragment" style="font-size: 0.85em; margin-top: 1.5em;">
-<p><strong>Momenta</strong> along <span class="math inline">\(\hat x\)</span>, quantized by the spatial size: <span class="math display">\[ ap = \frac{2\pi}{N_s} k \;\;\Rightarrow\;\; \frac{p}{T} = \frac{\pi}{2}\, k, \quad k = 0, \ldots, 6 \]</span></p>
-<div style="text-align:center; color:#8a9aa0; font-size: 0.9em; font-weight: 400; margin-top: 4px;">
-<p><span class="math inline">\(LT=4\)</span> (vs 3 of <span style=";color: gray;">[7]</span>) → finer momenta, up to <span class="math inline">\(p/T \simeq 9.4\)</span></p>
-</div>
-</div>
-</div></div>
-<div class="fragment" style="margin-top: 0.3em; border-left: 4px solid #af1212ff; padding-left: 15px; font-size: 0.94em;">
-<p><strong>Artifacts:</strong> <br>Smoothing introduces a new scale <span class="math inline">\(R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}\)</span> <span style=";color: gray;">[6]</span><br> <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em></p>
 </div>
 </section>
 <section id="three-limits-two-independent-strategies" class="slide level2">
@@ -816,6 +708,114 @@ Smearing-width dependence: flat within errors, as expected from <span class="mat
 <h2>References</h2>
 <div style="font-size: 0.72em; line-height: 1.7;">
 <p><span style=";color: gray;">[1]</span> Fukushima, Kharzeev, Warringa, Phys. Rev.&nbsp;D 78 (2008) 074033 [arXiv:0808.3382] <br> <span style=";color: gray;">[2]</span> Kharzeev, Liao, Tribedy, Int. J. Mod. Phys. E 33 (2024) 2430007 [arXiv:2405.05427] <br> <span style=";color: gray;">[3]</span> Notari, Rompineve, Villadoro, Phys. Rev.&nbsp;Lett. 131 (2023) 011004 [arXiv:2211.03799] <br> <span style=";color: gray;">[4]</span> Meyer, EPJA 47 (2011) 86 — Lowdon, Phys. Rev.&nbsp;D 106 (2022) 045028 <br> <span style=";color: gray;">[5]</span> Hansen, Lupo, Tantalo, Phys. Rev.&nbsp;D 99 (2019) 094508 [arXiv:1903.06476] <br> <span style=";color: gray;">[6]</span> Bonati, D’Elia, Phys. Rev.&nbsp;D 89 (2014) 105005 [arXiv:1401.2441] <br> <span style=";color: gray;">[7]</span> Bonanno, D’Angelo, D’Elia, Maio, Naviglio, Phys. Rev.&nbsp;D 108 (2023) 074515 [arXiv:2305.17120] <br> <span style=";color: gray;">[8]</span> Bonanno, D’Angelo, D’Elia, Maio, Naviglio, Phys. Rev.&nbsp;Lett. 132 (2024) 051903 [arXiv:2308.01287] <br> <span style=";color: gray;">[9]</span> Moore, Tassler, JHEP 02 (2011) 105 [arXiv:1011.1167] — Notari et al.&nbsp;[arXiv:2211.03799] <br></p>
+</div>
+</section>
+<section id="lattice-setup" class="slide level2">
+<h2>Lattice setup</h2>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div style="font-size: 0.82em; margin-top: 4px;">
+<p><strong>Discretization:</strong><br> Wilson plaquette action, heat-bath + over-relaxation: <span class="math display">\[\mathcal{S}_{\mathrm{YM}}[U] = -\frac{\beta}{3} \sum_{x,\mu&gt;\nu} \mathrm{Re}\,\mathrm{Tr}\left[U_{\mu\nu}(x)\right]\]</span></p>
+<p><strong>Observable</strong><br> Clover topological charge density <span class="math inline">\(q_L(x)\)</span> after <strong>cooling</strong>: <span class="math display">\[ Q_L^{\vec{p}}(n_t) = \sum_{\vec{n}} e^{i\vec{p}\cdot\vec{n}} q_L(n_t, \vec{n}) \]</span></p>
+<p>and we compute the correlator: <span class="math display">\[ G^{\vec{p}}(\tau) = \langle Q_L^{\vec{p}}(\tau) Q_L^{-\vec{p}}(0) \rangle \]</span></p>
+</div>
+</div><div class="column" style="width:48%;">
+<div style="font-size: 0.85em; text-align:center; margin-top: 0.2em;">
+<p><strong>Line of Constant Physics:</strong> <span class="math inline">\(\;T \simeq 1.24\,T_c\)</span>, <span class="math inline">\(\;LT = 4\)</span></p>
+</div>
+<div style="text-align:center; margin-top: 1.2em;">
+<table class="simstab" style="font-size:0.85em;">
+<tbody><tr>
+<th>
+<span class="math inline">\(N_s\)</span>
+</th>
+<th>
+<span class="math inline">\(N_\tau\)</span>
+</th>
+<th>
+<span class="math inline">\(\beta\)</span>
+</th>
+<th>
+<span class="math inline">\(a\)</span> <span class="math inline">\(\mathrm{[fm]}\)</span>
+</th>
+<th>
+<span class="math inline">\(T/T_c\)</span>
+</th>
+<th>
+<span class="math inline">\(\mathrm{Stat}\)</span>
+</th>
+</tr>
+<tr>
+<td>
+48
+</td>
+<td>
+12
+</td>
+<td>
+6.440
+</td>
+<td>
+0.0460(7)
+</td>
+<td>
+1.244(18)
+</td>
+<td>
+53.9k
+</td>
+</tr>
+<tr>
+<td>
+56
+</td>
+<td>
+14
+</td>
+<td>
+6.559
+</td>
+<td>
+0.0395(6)
+</td>
+<td>
+1.242(18)
+</td>
+<td>
+21.7k
+</td>
+</tr>
+<tr>
+<td>
+64
+</td>
+<td>
+16
+</td>
+<td>
+6.665
+</td>
+<td>
+0.0345(5)
+</td>
+<td>
+1.244(18)
+</td>
+<td>
+15.7k
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="fragment" style="font-size: 0.85em; margin-top: 1.5em;">
+<p><strong>Momenta</strong> along <span class="math inline">\(\hat x\)</span>, quantized by the spatial size: <span class="math display">\[ ap = \frac{2\pi}{N_s} k \;\;\Rightarrow\;\; \frac{p}{T} = \frac{\pi}{2}\, k, \quad k = 0, \ldots, 6 \]</span></p>
+<div style="text-align:center; color:#8a9aa0; font-size: 0.9em; font-weight: 400; margin-top: 4px;">
+<p><span class="math inline">\(LT=4\)</span> (vs 3 of <span style=";color: gray;">[7]</span>) → finer momenta, up to <span class="math inline">\(p/T \simeq 9.4\)</span></p>
+</div>
+</div>
+</div></div>
+<div class="fragment" style="margin-top: 0.3em; border-left: 4px solid #af1212ff; padding-left: 15px; font-size: 0.94em;">
+<p><strong>Artifacts:</strong> <br>Smoothing introduces a new scale <span class="math inline">\(R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}\)</span> <span style=";color: gray;">[6]</span><br> <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em></p>
 </div>
 
 <div class="reveal-header">

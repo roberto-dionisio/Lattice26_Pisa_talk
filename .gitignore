@@ -26,6 +26,9 @@ __pycache__/
 /images/
 /my-iframe/
 
+talk_script*
+
+
 # ---- loose top-level SVGs from the old deck (keep only the one still used) ---
 /*.svg
 !/lattice3d.svg

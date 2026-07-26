@@ -465,58 +465,7 @@ $$B[g] = \mathbf{g}^T \cdot \mathbf{Cov} \cdot \mathbf{g}$$
 
 
 
-## Lattice setup
 
-::: columns
-::: {.column width="52%"}
-
-::: {style="font-size: 0.82em; margin-top: 4px;"}
-**Discretization:**</br> Wilson plaquette action, heat-bath + over-relaxation:
-$$\mathcal{S}_{\mathrm{YM}}[U] = -\frac{\beta}{3} \sum_{x,\mu>\nu} \mathrm{Re}\,\mathrm{Tr}\left[U_{\mu\nu}(x)\right]$$
-
-**Observable**</br>
-Clover topological charge density $q_L(x)$ after **cooling**:
-$$ Q_L^{\vec{p}}(n_t) = \sum_{\vec{n}} e^{i\vec{p}\cdot\vec{n}} q_L(n_t, \vec{n}) $$
-
-and we compute the correlator:
-  $$ G^{\vec{p}}(\tau) = \langle Q_L^{\vec{p}}(\tau) Q_L^{-\vec{p}}(0) \rangle $$
-
-
-
-:::
-
-:::
-::: {.column width="48%"}
-
-::: {style="font-size: 0.85em; text-align:center; margin-top: 0.2em;"}
-**Line of Constant Physics:** $\;T \simeq 1.24\,T_c$, $\;LT = 4$
-:::
-<div style="text-align:center; margin-top: 1.2em;">
-<table class="simstab" style="font-size:0.85em;">
-<tr><th>$N_s$</th><th>$N_\tau$</th><th>$\beta$</th><th>$a$ $\mathrm{[fm]}$</th><th>$T/T_c$</th><th>$\mathrm{Stat}$</th></tr>
-<tr><td>48</td><td>12</td><td>6.440</td><td>0.0460(7)</td><td>1.244(18)</td><td>53.9k</td></tr>
-<tr><td>56</td><td>14</td><td>6.559</td><td>0.0395(6)</td><td>1.242(18)</td><td>21.7k</td></tr>
-<tr><td>64</td><td>16</td><td>6.665</td><td>0.0345(5)</td><td>1.244(18)</td><td>15.7k</td></tr>
-</table>
-
-</div>
-
-::: {.fragment style="font-size: 0.85em; margin-top: 1.5em;"}
-**Momenta** along $\hat x$, quantized by the spatial size:
-$$ ap = \frac{2\pi}{N_s} k \;\;\Rightarrow\;\; \frac{p}{T} = \frac{\pi}{2}\, k, \quad k = 0, \ldots, 6 $$
-
-::: {style="text-align:center; color:#8a9aa0; font-size: 0.9em; font-weight: 400; margin-top: 4px;"}
-$LT=4$ (vs 3 of [[7]]{color=gray}) → finer momenta, up to $p/T \simeq 9.4$
-:::
-:::
-
-:::
-:::
-
-<div class="fragment" style="margin-top: 0.3em; border-left: 4px solid #af1212ff; padding-left: 15px; font-size: 0.94em;">
-  **Artifacts:** <br>Smoothing introduces a new scale $R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}$ [[6]]{color=gray}<br>
-  <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em>
-</div>
 
 ## Three limits, two independent strategies
 
@@ -770,3 +719,57 @@ Questions?
 [[9]]{color=gray} Moore, Tassler, JHEP 02 (2011) 105 [arXiv:1011.1167] — Notari et al. [arXiv:2211.03799] <br>
 
 :::
+
+
+## Lattice setup
+
+::: columns
+::: {.column width="52%"}
+
+::: {style="font-size: 0.82em; margin-top: 4px;"}
+**Discretization:**</br> Wilson plaquette action, heat-bath + over-relaxation:
+$$\mathcal{S}_{\mathrm{YM}}[U] = -\frac{\beta}{3} \sum_{x,\mu>\nu} \mathrm{Re}\,\mathrm{Tr}\left[U_{\mu\nu}(x)\right]$$
+
+**Observable**</br>
+Clover topological charge density $q_L(x)$ after **cooling**:
+$$ Q_L^{\vec{p}}(n_t) = \sum_{\vec{n}} e^{i\vec{p}\cdot\vec{n}} q_L(n_t, \vec{n}) $$
+
+and we compute the correlator:
+  $$ G^{\vec{p}}(\tau) = \langle Q_L^{\vec{p}}(\tau) Q_L^{-\vec{p}}(0) \rangle $$
+
+
+
+:::
+
+:::
+::: {.column width="48%"}
+
+::: {style="font-size: 0.85em; text-align:center; margin-top: 0.2em;"}
+**Line of Constant Physics:** $\;T \simeq 1.24\,T_c$, $\;LT = 4$
+:::
+<div style="text-align:center; margin-top: 1.2em;">
+<table class="simstab" style="font-size:0.85em;">
+<tr><th>$N_s$</th><th>$N_\tau$</th><th>$\beta$</th><th>$a$ $\mathrm{[fm]}$</th><th>$T/T_c$</th><th>$\mathrm{Stat}$</th></tr>
+<tr><td>48</td><td>12</td><td>6.440</td><td>0.0460(7)</td><td>1.244(18)</td><td>53.9k</td></tr>
+<tr><td>56</td><td>14</td><td>6.559</td><td>0.0395(6)</td><td>1.242(18)</td><td>21.7k</td></tr>
+<tr><td>64</td><td>16</td><td>6.665</td><td>0.0345(5)</td><td>1.244(18)</td><td>15.7k</td></tr>
+</table>
+
+</div>
+
+::: {.fragment style="font-size: 0.85em; margin-top: 1.5em;"}
+**Momenta** along $\hat x$, quantized by the spatial size:
+$$ ap = \frac{2\pi}{N_s} k \;\;\Rightarrow\;\; \frac{p}{T} = \frac{\pi}{2}\, k, \quad k = 0, \ldots, 6 $$
+
+::: {style="text-align:center; color:#8a9aa0; font-size: 0.9em; font-weight: 400; margin-top: 4px;"}
+$LT=4$ (vs 3 of [[7]]{color=gray}) → finer momenta, up to $p/T \simeq 9.4$
+:::
+:::
+
+:::
+:::
+
+<div class="fragment" style="margin-top: 0.3em; border-left: 4px solid #af1212ff; padding-left: 15px; font-size: 0.94em;">
+  **Artifacts:** <br>Smoothing introduces a new scale $R_s = a\sqrt{\tfrac{8}{3} n_{\mathrm{cool}}} = \sqrt{8 t_{\mathrm{GF}}}$ [[6]]{color=gray}<br>
+  <em style="color:#af1212ff">We must remove this dependence to recover physical results.</em>
+</div>
