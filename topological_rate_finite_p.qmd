@@ -687,9 +687,7 @@ temperature dependence, and the expected **light-quark enhancement** of the mome
 
 # Thank you for your attention! {.center}
 
-::: {.lead style="text-align:center;"}
-Questions?
-:::
+
 
 ## Why bother? Naive inversion is a catastrophe
 
